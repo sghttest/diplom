@@ -37,12 +37,15 @@
 }
 
 .navbar__link{
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     text-decoration: none;
     color: var(--light-blue);
+    background-color: var(--dark-blue);
+    border: none;
 }
 
 .search{
@@ -66,7 +69,7 @@
     border: none;
     height: 28px;
     width: 28px;
-    background: url('/public/img/btn-mini.svg');
+    background: url('../../../assets/btn-mini.svg');
     background-repeat: no-repeat;
     background-size: cover;
 }

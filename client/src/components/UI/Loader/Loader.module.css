@@ -1,7 +1,11 @@
 .loader{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     width: 150px;
     height: 150px;
-    margin: 300px auto;
     border-radius: 50%;
     border: 3px dashed var(--dark-blue);
     animation: round 5s infinite linear;

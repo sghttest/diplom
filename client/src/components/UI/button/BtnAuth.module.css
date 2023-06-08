@@ -1,0 +1,21 @@
+.btnAuth{
+    width: 414px;
+    height: 40px;
+    color: black;
+    font-size: 16px;
+    background: url('../../../assets/btn.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+}
+
+.btnAuth:hover{
+    color: white;
+    transition: all ease .3s;
+}
+
+.btnAuth:active{
+    color: red;
+    transition: all ease .3s;
+}

@@ -4,6 +4,8 @@ import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from '../utils/consts';
 import { registration, login } from '../http/userAPI';
 import { Context } from '..';
 import { observer } from 'mobx-react-lite';
+import BtnAuth from '../components/UI/button/BtnAuth';
+import MyInput from '../components/UI/input/MyInput';
 
 const Auth = observer(() => {
     const {user} = useContext(Context)
@@ -23,7 +25,11 @@ const Auth = observer(() => {
             }
             user.setUser(data)
             user.setIsAuth(true)  
-            history(SHOP_ROUTE)
+            if (isLogin){
+                history(SHOP_ROUTE)
+            }else{
+                history(LOGIN_ROUTE)
+            }
         }catch(e){
             alert(e.response.data.message)
         }
@@ -32,22 +38,22 @@ const Auth = observer(() => {
     return ( 
         <div className='container' style={{height: window.innerHeight - 150}}>
             <h2 style={{textAlign: 'center'}}>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
-            <div style={{border: '1px solid black', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 15px'}}>
-                <input type="text" value={email} onChange={e=>setEmail(e.target.value)}  placeholder="Введите email" style={{width: '100%'}} />
-                <input type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="Введите password" style={{width: '100%'}} />
+            <div style={{margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <MyInput type="text" value={email} onChange={e=>setEmail(e.target.value)}  placeholder="Введите email" style={{backgroundColor: 'white', marginTop: '20px'}} />
+                <MyInput type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="Введите password" style={{backgroundColor: 'white', margin: '20px 0'}} />
                 {isLogin ?
-                <div>
+                <div style={{marginTop: '10px'}}>
                     Нет аккаунта? 
                     <NavLink to={REGISTRATION_ROUTE}>Зарегистрируйся!</NavLink>
                 </div>
                 :
-                <div>
+                <div style={{marginTop: '10px'}}>
                     Уже есть аккаунт? 
                     <NavLink to={LOGIN_ROUTE}>Войдите!</NavLink>
                 </div>
                 }
                 
-                <button onClick={click}>{isLogin ? 'Войти' : 'Зарегистрироваться'}</button>
+                <BtnAuth style={{marginTop: '20px'}} onClick={click}>{isLogin ? 'Войти' : 'Зарегистрироваться'}</BtnAuth>
             </div>
         </div>
     );

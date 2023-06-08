@@ -1,41 +1,58 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import cl from './Navbar.module.css'
 import { Context } from '../../..';
-import { BASKET_ROUTE, SHOP_ROUTE } from '../../../utils/consts';
+import { ADMIN_ROUTE, BASKET_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../../../utils/consts';
 import { observer } from 'mobx-react-lite';
+import MyInput from '../input/MyInput';
+import profileIcon from '../../../assets/profileIcon.svg'
+import shoppingCartIcon from '../../../assets/shoppingCartIcon.svg'
+import logoCyber from '../../../assets/logo_cyber.svg'
 
 const Navbar = observer(() => {
     const {user} = useContext(Context)
+
+    const history = useNavigate()
+
+    const logOut = () => {
+        user.setUser({})
+        user.setIsAuth(false)
+        localStorage.removeItem('token')
+        history(LOGIN_ROUTE)
+    }
+
     return ( 
         <div className={cl.navbar__wrapper}>
             <div className={cl.navbar}>
                 <div className={cl.logo}>
-                    <NavLink to={SHOP_ROUTE}>
-                        <img src="img/logo_cyber.svg" alt=""/>
-                    </NavLink>
+                    <button onClick={() => history(SHOP_ROUTE)} className={cl.navbar__link}>
+                        <img src={logoCyber} alt=""/>
+                    </button>
                 </div>
                 <div className={cl.navbar__search}>
-                    <input className={cl.search} type="text" placeholder="Поиск"/>
+                    <MyInput type="text" placeholder="Поиск"/>
                     <button className={cl.btn__search}></button>
                 </div>
                 {user.isAuth 
                 ?
                 <div className={cl.navbar__links}>
-                    <NavLink to={BASKET_ROUTE} className={cl.navbar__link}>
+                    <button onClick={() => history(ADMIN_ROUTE)} className={cl.navbar__link}>
                         Админ
-                    </NavLink>
-                    <NavLink className={cl.navbar__link}>
-                        <img src="img/shoppingCartIcon.svg" alt="" className={cl.navbar__icon}/>
+                    </button>
+                    <button onClick={() => history(BASKET_ROUTE)} className={cl.navbar__link}>
+                        <img src={shoppingCartIcon} alt="" className={cl.navbar__icon}/>
                         Корзина
-                    </NavLink>
+                    </button>
+                    <button onClick={() => logOut()} className={cl.navbar__link}>
+                        Выйти
+                    </button>
                 </div>
                 :
                 <div className={cl.navbar__links}>
-                    <NavLink className={cl.navbar__link} onClick={()=>user.setIsAuth(true)}>
-                        <img src="img/profileIcon.svg" alt="" className={cl.navbar__icon}/>
+                    <button onClick={() => history(LOGIN_ROUTE)} className={cl.navbar__link}>
+                        <img src={profileIcon} alt="" className={cl.navbar__icon}/>
                         Войти
-                    </NavLink>
+                    </button>
                 </div>
                 }
             </div>

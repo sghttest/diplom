@@ -1,0 +1,7 @@
+.typeBarItem{
+    cursor: pointer;
+}
+
+.active{
+    background-color: var(--dark-blue);
+}

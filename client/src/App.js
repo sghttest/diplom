@@ -7,31 +7,33 @@ import { observer } from 'mobx-react-lite';
 import { Context } from '.';
 import { check } from './http/userAPI';
 import Loader from './components/UI/Loader/Loader';
+import Footer from './components/UI/footer/Footer';
 
 const App = observer(() => {
   const {user} = useContext(Context)
   const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
-    console.log('pere')
     check().then(data=>{
-      user.setUser(true)
-      user.setIsAuth(true)
+      if (data){
+        user.setUser(data)
+        user.setIsAuth(true)
+        console.log('Авторизован')
+      }else{
+        console.log('Не авторизован')
+      }
     }).finally(()=>setLoading(false))  
-    }, [])
+    }, [user.isAuth])
 
   if(loading){
     return <Loader/>
   }
 
-  
-
-
-
   return ( 
     <BrowserRouter>
       <Navbar/>
       <AppRouter/>
+      <Footer/>
     </BrowserRouter>
   );
 })
