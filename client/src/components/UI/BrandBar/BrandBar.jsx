@@ -6,7 +6,7 @@ import cl from './BrandBar.module.css'
 const BrandBar = observer(() => {
     const {device} = useContext(Context)
     return ( 
-        <div>
+        <div className={cl.brandBar}>
             {device.brands.map((brand)=>
                 <div 
                     key={brand.id}
@@ -16,6 +16,12 @@ const BrandBar = observer(() => {
                     {brand.name}
                 </div>
             )}
+            <div 
+                    className={cl.brandBarItem}
+                    onClick={()=>device.setSelectedBrand({})}
+                >
+                    Сбросить фильтр
+            </div>
         </div>
     );
 })

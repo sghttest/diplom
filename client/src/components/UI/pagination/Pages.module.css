@@ -1,0 +1,27 @@
+.page__wrapper{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.page{
+    margin: 5px;
+    padding: 10px;
+    color: black;
+    font-size: 14px;
+    border: 1px solid var(--dark-blue);
+    background: white;
+    cursor: pointer;
+}
+
+.page:hover{
+    transition: all ease .3s;
+    background: var(--dark-blue);
+}
+
+.page__current{
+    transition: all ease .3s;
+    background: var(--dark-blue);
+    color: var(--light-blue);
+}

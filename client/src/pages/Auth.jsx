@@ -20,11 +20,13 @@ const Auth = observer(() => {
             let data
             if (isLogin){
                 data = await login(email, password)
+                localStorage.setItem('email', email)
             }else{
                 data = await registration(email, password)
             }
             user.setUser(data)
             user.setIsAuth(true)  
+            
             if (isLogin){
                 history(SHOP_ROUTE)
             }else{
@@ -37,7 +39,7 @@ const Auth = observer(() => {
 
     return ( 
         <div className='container' style={{height: window.innerHeight - 150}}>
-            <h2 style={{textAlign: 'center'}}>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
+            <h2 style={{textAlign: 'center', marginTop: '50px'}}>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
             <div style={{margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <MyInput type="text" value={email} onChange={e=>setEmail(e.target.value)}  placeholder="Введите email" style={{backgroundColor: 'white', marginTop: '20px'}} />
                 <MyInput type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="Введите password" style={{backgroundColor: 'white', margin: '20px 0'}} />

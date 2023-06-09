@@ -6,7 +6,7 @@ import cl from './TypeBar.module.css'
 const TypeBar = observer(() => {
     const {device} = useContext(Context)
     return ( 
-        <div>
+        <div className={cl.typeBar}>
             {device.types.map(type=>
                 <div
                     className={type.id === device.selectedType.id ? cl.typeBarItem +' '+ cl.active : cl.typeBarItem}
@@ -16,6 +16,12 @@ const TypeBar = observer(() => {
                     {type.name}
                 </div>
                 )}
+                <div 
+                    className={cl.typeBarItem}
+                    onClick={()=>device.setSelectedType({})}
+                >
+                    Сбросить фильтр
+            </div>
         </div>
     );
 })

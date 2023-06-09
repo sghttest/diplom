@@ -64,7 +64,16 @@
     color: var(--light-blue);
 }
 
+.icon__search{
+    width: 20px;
+    height: 20px;
+
+}
+
 .btn__search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     border: none;
     height: 28px;

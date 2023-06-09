@@ -8,6 +8,7 @@ import MyInput from '../input/MyInput';
 import profileIcon from '../../../assets/profileIcon.svg'
 import shoppingCartIcon from '../../../assets/shoppingCartIcon.svg'
 import logoCyber from '../../../assets/logo_cyber.svg'
+import iconSearch from '../../../assets/icon_search.svg'
 
 const Navbar = observer(() => {
     const {user} = useContext(Context)
@@ -17,6 +18,7 @@ const Navbar = observer(() => {
     const logOut = () => {
         user.setUser({})
         user.setIsAuth(false)
+        localStorage.removeItem('email')
         localStorage.removeItem('token')
         history(LOGIN_ROUTE)
     }
@@ -29,21 +31,16 @@ const Navbar = observer(() => {
                         <img src={logoCyber} alt=""/>
                     </button>
                 </div>
-                <div className={cl.navbar__search}>
-                    <MyInput type="text" placeholder="Поиск"/>
-                    <button className={cl.btn__search}></button>
-                </div>
+
                 {user.isAuth 
                 ?
                 <div className={cl.navbar__links}>
-                    <button onClick={() => history(ADMIN_ROUTE)} className={cl.navbar__link}>
-                        Админ
-                    </button>
                     <button onClick={() => history(BASKET_ROUTE)} className={cl.navbar__link}>
                         <img src={shoppingCartIcon} alt="" className={cl.navbar__icon}/>
                         Корзина
                     </button>
                     <button onClick={() => logOut()} className={cl.navbar__link}>
+                        <img src={profileIcon} alt="" className={cl.navbar__icon}/>
                         Выйти
                     </button>
                 </div>

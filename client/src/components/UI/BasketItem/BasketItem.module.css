@@ -35,18 +35,12 @@
     margin-left: 37px;
 }
 
-.btn__buy{
+.btnRemove{
     cursor: pointer;
-    width: 135px;
-    height: 45px;
-    color: black;
-    font-size: 16px;
-    background: url('../../../assets/background-buy-btn.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: none;
+    padding: 5px 10px;
+    border: 1px solid var(--light-blue);
+    background-color: var(--light-blue);
 }
-
 
 .card_rating{
     display: flex;

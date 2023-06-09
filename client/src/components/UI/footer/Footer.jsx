@@ -9,6 +9,17 @@ const Footer = () => {
                 <div className={cl.logo}>
                     <img src={logoCyber} alt="" />
                 </div>
+                <div style={{color:'var(--light-blue)'}}>
+                    <a style={{color:'var(--light-blue)', textDecoration: 'none'}} href="https://github.com/sghttest">
+                        Щепин В.В. ПКС-4
+                    </a>
+                </div>
+                <div style={{color:'var(--light-blue)'}}>
+                    <a style={{color:'var(--light-blue)', textDecoration: 'none'}} href="https://sghttest.github.io/">
+                    ГБПОУ "СГХТ"
+                    </a>
+                </div>
+                
             </div>
         </div>
     );

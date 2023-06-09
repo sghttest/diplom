@@ -11,23 +11,23 @@ const DeviceItem = ({device}) => {
     const rating = []
     if (device.rating){
         for(let i = 0; i< device.rating; i++){
-           rating.push(<img src={star} key={device.id+i}/>)                     
+           rating.push(<img className={cl.ratingStar} src={star} key={device.id+i}/>)                     
         }
     }
 
     return ( 
-        <div onClick={()=> history(DEVICE_ROUTE+'/'+device.id)}>
-            <div>
-                <img className={cl.deviceImg} src={process.env.REACT_APP_API_URL + device.img}/>
-                <div>
-                    <div>{device.name}</div>
-                    <div>
-                        <div>{device.rating}</div>
-                        {rating}
-                    </div>
-                    <div>{device.price}</div>
+        <div className={cl.device__card} >
+            <img className={cl.deviceImg} src={process.env.REACT_APP_API_URL + device.img}/>
+            <div className={cl.card_description}>
+                <div style={{cursor: 'pointer', color:'var(--light-blue)'}} onClick={()=> history(DEVICE_ROUTE+'/'+device.id)}>Модель: {device.name}</div>
+                <div className={cl.card_rating} style={{display: 'flex', alignItems: 'center', color:'var(--light-blue)'}}>
+                    Рейтинг: {rating.length? rating : 'Нет оценок'}
                 </div>
             </div>
+            <div className={cl.buy_info}>
+                <div style={{color:'var(--light-blue)'}}>Цена: {device.price} руб.</div>
+                <button className={cl.btn__buy} onClick={()=> history(DEVICE_ROUTE+'/'+device.id)}>Купить</button>
+            </div>       
         </div>
     );
 }

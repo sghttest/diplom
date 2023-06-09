@@ -1,7 +1,33 @@
 .typeBarItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    width: 90%;
+    height: 30px;
+    border: 1px solid var(--dark-blue);
+    margin: 3px auto;
+    
 }
 
 .active{
+    transition: all ease .3s;
     background-color: var(--dark-blue);
+    color: var(--light-blue);
 }
+
+.typeBarItem:hover{
+    transition: all ease .3s;
+    background-color: var(--dark-blue);   
+}
+
+.typeBar{
+    width: 305px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+
+
